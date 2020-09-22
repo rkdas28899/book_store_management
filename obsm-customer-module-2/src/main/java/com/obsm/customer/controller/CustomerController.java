@@ -1,5 +1,6 @@
 package com.obsm.customer.controller;
 
+import java.net.URISyntaxException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +13,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestClientException;
 
 import com.obsm.customer.exception.CustomerNotFoundException;
+import com.obsm.customer.exception.ReviewNotFoundException;
 import com.obsm.customer.model.Customer;
 import com.obsm.customer.payload.CustomerUpdateRequest;
 import com.obsm.customer.service.ICustomerService;
+import com.obsm.customer.model.Review;
 
 @RestController
 @RequestMapping("/Customer")
@@ -48,5 +52,35 @@ public class CustomerController {
 	public ResponseEntity<List<Customer>> getAllCustomer() {
 		return service.getAllCustomer();
 	}
+	
+	
+	
+	
+	
+	@PostMapping("/addReview")
+	public Review addReview(@RequestBody Review review){
+		return (service.addReview(review));
+	}
+	
+	@DeleteMapping("/deleteReview/{reviewId}")
+	public Review deleteReview(@PathVariable long reviewId) throws ReviewNotFoundException, RestClientException, URISyntaxException {
+		return service.deleteReview(reviewId);
+	}
+
+	@PutMapping("/updateReview/{reviewId}")
+	public Review updateReview(@RequestBody CustomerUpdateRequest reviewUpdateRequest, @PathVariable long reviewId) throws ReviewNotFoundException, RestClientException, URISyntaxException {
+		return service.updateReview(reviewUpdateRequest, reviewId);
+	}
+
+	@GetMapping("getReview/{reviewId}")
+	public Review getReview(@PathVariable long reviewId) throws ReviewNotFoundException  {
+		return service.getReview(reviewId);
+	}
+
+//	@GetMapping("/getAllReviews")
+//	public List<Review> getAllReviews() {
+//		return service.getAllReviews();
+//	}
+	
 
 }
