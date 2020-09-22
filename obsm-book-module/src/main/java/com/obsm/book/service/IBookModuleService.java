@@ -15,5 +15,8 @@ public interface IBookModuleService {
 	public ResponseEntity<Book> updateBook(BookUpdateRequest bookUpdateRequest, long bookId) throws BookNotFound;
 	public ResponseEntity<Book> getBook(long bookId) throws BookNotFound;
 	public ResponseEntity<List<Book>> getAllBooks();
+	public ResponseEntity<List<Book>> getFavBooks();
+	public ResponseEntity<List<Book>> getBooksByCatId(long catogeryId);
+	public ResponseEntity<List<Book>> getAllRecentlyPublishedBooks();
 
 }

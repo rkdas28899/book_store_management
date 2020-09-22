@@ -11,12 +11,13 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.sun.istack.NotNull;
-@Entity
+@Entity(name="book_data")
 @Table(name="book_data")
 public class Book {	
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="bookIdGenerator")
+	@SequenceGenerator(name="bookIdGenerator", initialValue=10000)
 	private long bookId;
 	
 	@Column(name="title")

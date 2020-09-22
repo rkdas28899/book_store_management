@@ -80,5 +80,23 @@ public class BookModuleServiceImpl implements IBookModuleService {
 	public ResponseEntity<List<Book>> getAllBooks() {
 		return new ResponseEntity(bookrepo.findAll(),HttpStatus.FOUND);
 	}
+	
+	@Override
+	public ResponseEntity<List<Book>> getFavBooks() {
+		// TODO Auto-generated method stub
+		return new ResponseEntity(bookrepo.viewFavoriteBooksByRating(),HttpStatus.FOUND);
+	}
+
+	@Override
+	public ResponseEntity<List<Book>> getBooksByCatId(long catogeryId) {
+		// TODO Auto-generated method stub
+		return new ResponseEntity(bookrepo.viewBooksByCatId(catogeryId),HttpStatus.FOUND);
+	}
+
+	@Override
+	public ResponseEntity<List<Book>> getAllRecentlyPublishedBooks() {
+		// TODO Auto-generated method stub
+		return new ResponseEntity(bookrepo.viewAllRecentlyPublishedBooks(),HttpStatus.FOUND);
+	}
 
 }

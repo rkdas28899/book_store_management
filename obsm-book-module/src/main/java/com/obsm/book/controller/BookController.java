@@ -49,5 +49,20 @@ public class BookController {
 	public ResponseEntity<List<Book>> getAllBooks() {
 		return service.getAllBooks();
 	}
+	
+	@GetMapping("/getFavBooks")
+	public ResponseEntity<List<Book>> viewFavoriteBooksByRating() {
+		return service.getFavBooks();
+	}
+	
+	@GetMapping("/getBooks/catogeryId/{catogeryId}")
+	public ResponseEntity<List<Book>> getBooksByCatId(@PathVariable long catogeryId) {
+		return service.getBooksByCatId(catogeryId);
+	}
+	
+	@GetMapping("/getBooks/recentlyPublished")
+	public ResponseEntity<List<Book>> viewAllRecentlyPublishedBooks() {
+		return service.getAllRecentlyPublishedBooks();
+	}
 
 }
